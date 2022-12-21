@@ -3,6 +3,7 @@ import CurrencyRouletteGame
 import GuessGame
 import memory_game
 from utils import MAX_DIFF
+from score import add_score
 
 
 def welcome(my_name):
@@ -19,7 +20,9 @@ def load_game():
     help_dic = {1: memory_game, 2: GuessGame, 3: CurrencyRouletteGame}
     game = check_valability(game_text, 3)
     diff = check_valability(diff_text, MAX_DIFF)
-    return help_dic[game].play(diff, 'ariel')
+    if help_dic[game].play(diff, 'ariel'):
+        add_score(diff)
+
 
 
 load_game()
